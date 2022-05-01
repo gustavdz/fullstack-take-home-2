@@ -24,7 +24,25 @@ const createRover = (startPos) => {
   return rover;
 };
 
+const moveRover = (direction, rover) => {
+  const directions = direction.split("");
+  const movedRover = JSON.parse(JSON.stringify(rover));
+  for (const direction of directions) {
+    const orientation = movedRover.orientation;
+    if (["L", "R"].indexOf(direction) > -1) {
+      movedRover.orientation = cardinalPoints[orientation][direction];
+    } else {
+      movedRover.position = cardinalPoints[orientation][direction](
+        movedRover.position.x,
+        movedRover.position.y
+      );
+    }
+  }
+  return movedRover;
+};
+
 module.exports = {
   getBounds,
   createRover,
+  moveRover,
 };

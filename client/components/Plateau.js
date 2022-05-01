@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -13,7 +13,7 @@ const Coord = styled(Paper)(({ theme }) => ({
 }));
 
 function Position(props) {
-  const { x = 1, y = 1 } = props;
+  const { x = 1, y = 1, rover = {} } = props;
   const xArray = [...Array(x).keys()];
   const yArray = [...Array(y).keys()];
 
@@ -35,17 +35,34 @@ function Position(props) {
               alignItems="center"
               key={`y-${yPosition}`}
             >
-              {xArray.length > 0 ? (
+              {xArray.length > 0 &&
                 xArray.map((xPosition) => (
                   <Grid item xs marginTop={2}>
-                    <Coord>Coord {`${xPosition}${yPosition}`}</Coord>
+                    {rover &&
+                    rover.orientation &&
+                    rover.orientation !== "" &&
+                    rover.position?.x &&
+                    rover.position?.y &&
+                    rover.position.x === xPosition &&
+                    rover.position.y === yPosition ? (
+                      <Coord>
+                        {rover.orientation === "N" ? (
+                          "^"
+                        ) : rover.orientation === "S" ? (
+                          "V"
+                        ) : rover.orientation === "E" ? (
+                          ">"
+                        ) : rover.orientation === "O" ? (
+                          "<"
+                        ) : (
+                          <Coord> {`${xPosition}${yPosition}`}</Coord>
+                        )}
+                      </Coord>
+                    ) : (
+                      <Coord> {`${xPosition}${yPosition}`}</Coord>
+                    )}
                   </Grid>
-                ))
-              ) : (
-                <Grid item xs>
-                  <Coord>Coord</Coord>
-                </Grid>
-              )}
+                ))}
             </Grid>
           ))}
     </React.Fragment>
@@ -53,10 +70,10 @@ function Position(props) {
 }
 
 export default function Plateau(props) {
-  const { newBounds } = props;
+  const { newBounds, rover } = props;
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Position x={newBounds?.x || 1} y={newBounds?.y || 1} />
+      <Position x={newBounds?.x || 1} y={newBounds?.y || 1} rover={rover} />
     </Box>
   );
 }

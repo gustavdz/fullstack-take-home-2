@@ -7,6 +7,7 @@ import Plateau from "./components/Plateau";
 function App() {
   const [newPosition, setNewPosition] = useState("");
   const [newBounds, setNewBounds] = useState();
+  const [rover, setRover] = useState();
 
   return (
     <div className="App" style={{ textAlign: "center" }}>
@@ -17,8 +18,12 @@ function App() {
       <Typography variant="h3" component="h3" style={{ marginBottom: 40 }}>
         New Position:{newPosition}
       </Typography>
-      <Form setNewPosition={setNewPosition} setNewBounds={setNewBounds} />
-      <Plateau newBounds={newBounds} />
+      <Form
+        setNewPosition={setNewPosition}
+        setNewBounds={setNewBounds}
+        setRover={setRover}
+      />
+      <Plateau newBounds={newBounds} rover={rover} />
     </div>
   );
 }

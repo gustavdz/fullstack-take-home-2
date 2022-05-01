@@ -5,7 +5,7 @@ import { Button, TextField } from "@mui/material";
 import { getNewPosition } from "../services";
 
 function FormRow(props) {
-  const { setNewPosition, setNewBounds } = props;
+  const { setNewPosition, setNewBounds, setRover } = props;
   const [bounds, setBounds] = useState("5 5");
   const [curLocation, setCurLocation] = useState("1 2 N");
   const [moves, setMoves] = useState("LMLMLMLMM");
@@ -23,6 +23,7 @@ function FormRow(props) {
     ) {
       setNewPosition(result.data.newLocation);
       setNewBounds(result.data.bounds);
+      setRover(result.data.rover);
     }
   }, [result]);
 
@@ -71,7 +72,7 @@ function FormRow(props) {
 }
 
 export default function Form(props) {
-  const { setNewPosition, setNewBounds } = props;
+  const { setNewPosition, setNewBounds, setRover } = props;
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -87,6 +88,7 @@ export default function Form(props) {
             <FormRow
               setNewPosition={setNewPosition}
               setNewBounds={setNewBounds}
+              setRover={setRover}
             />
           </Grid>
         </Grid>

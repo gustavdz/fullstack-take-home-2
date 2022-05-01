@@ -52,7 +52,7 @@ const checkBounds = (movedRover, plateauBounds) => {
     movedRover.position.x > plateauBounds.x ||
     movedRover.position.x < 0 ||
     movedRover.position.y > plateauBounds.y ||
-    movedRover.position.x < 0
+    movedRover.position.y < 0
   ) {
     return false;
   }

@@ -49,9 +49,9 @@ const getNewLocation = (rover) => {
 
 const checkBounds = (movedRover, plateauBounds) => {
   if (
-    movedRover.position.x > plateauBounds.x ||
+    movedRover.position.x >= plateauBounds.x ||
     movedRover.position.x < 0 ||
-    movedRover.position.y > plateauBounds.y ||
+    movedRover.position.y >= plateauBounds.y ||
     movedRover.position.y < 0
   ) {
     return false;

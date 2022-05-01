@@ -6,9 +6,9 @@ import { getNewPosition } from "../services";
 
 function FormRow(props) {
   const { setNewPosition, setNewBounds, setRover } = props;
-  const [bounds, setBounds] = useState("5 5");
-  const [curLocation, setCurLocation] = useState("1 2 N");
-  const [moves, setMoves] = useState("LMLMLMLMM");
+  const [bounds, setBounds] = useState("");
+  const [curLocation, setCurLocation] = useState("");
+  const [moves, setMoves] = useState("");
   const [result, setResult] = useState();
   const handlerClick = async () => {
     setResult(await getNewPosition({ bounds, curLocation, moves }));

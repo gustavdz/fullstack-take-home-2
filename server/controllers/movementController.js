@@ -2,6 +2,8 @@ const {
   getBounds,
   createRover,
   moveRover,
+  checkBounds,
+  getNewLocation,
 } = require("../service/movementService");
 
 /**
@@ -14,9 +16,19 @@ const runMove = (req, res) => {
     const coords = getBounds(bounds);
     const rover = createRover(currentLocation);
     const movedRover = moveRover(movement, rover);
+    const inBounds = checkBounds(movedRover, coords);
+    if (!inBounds) {
+      res.status(400).json({
+        data: null,
+        status: "ROVER_OUT_OF_BOUNDS",
+        message: "rover is out of bounds.",
+      });
+    }
+
+    const newLocation = getNewLocation(movedRover);
 
     res.status(201).json({
-      data: { rover: movedRover },
+      data: { newLocation, rover: movedRover },
       status: "NEW_LOCATION_SET_SUCCESSFULLY",
       message: "the new location was set successfully",
     });

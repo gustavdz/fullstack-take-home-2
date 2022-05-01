@@ -41,8 +41,28 @@ const moveRover = (direction, rover) => {
   return movedRover;
 };
 
+const getNewLocation = (rover) => {
+  let resultString = "";
+  resultString += `${rover.position.x} ${rover.position.y} ${rover.orientation}`;
+  return resultString;
+};
+
+const checkBounds = (movedRover, plateauBounds) => {
+  if (
+    movedRover.position.x > plateauBounds.x ||
+    movedRover.position.x < 0 ||
+    movedRover.position.y > plateauBounds.y ||
+    movedRover.position.x < 0
+  ) {
+    return false;
+  }
+  return true;
+};
+
 module.exports = {
   getBounds,
   createRover,
   moveRover,
+  checkBounds,
+  getNewLocation,
 };

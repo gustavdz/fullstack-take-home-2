@@ -31,7 +31,7 @@ function FormRow(props) {
     <>
       <Grid item xs={12} sm={6} md={3}>
         <TextField
-          id="outlined-basic"
+          id="boundsInput"
           label="Bounds"
           variant="outlined"
           value={bounds}
@@ -42,7 +42,7 @@ function FormRow(props) {
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
         <TextField
-          id="outlined-basic"
+          id="curPositionInput"
           label="Current Position"
           variant="outlined"
           value={curLocation}
@@ -53,8 +53,8 @@ function FormRow(props) {
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
         <TextField
-          id="outlined-basic"
-          label="Movement"
+          id="movesInput"
+          label="Moves"
           variant="outlined"
           value={moves}
           onChange={(e) => {

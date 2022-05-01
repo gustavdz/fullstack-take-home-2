@@ -48,7 +48,7 @@ function Position(props) {
             >
               {xArray.length > 0 &&
                 xArray.map((xPosition) => (
-                  <Grid item xs marginTop={2}>
+                  <Grid item xs marginTop={2} key={`x-${xPosition}`}>
                     {rover &&
                     rover.orientation &&
                     rover.orientation !== "" &&

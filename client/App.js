@@ -16,7 +16,7 @@ function App() {
         MARS ROVER
       </Typography>
       <Typography variant="h3" component="h3" style={{ marginBottom: 40 }}>
-        New Position:{newPosition}
+        New Position: {newPosition}
       </Typography>
       <Form
         setNewPosition={setNewPosition}

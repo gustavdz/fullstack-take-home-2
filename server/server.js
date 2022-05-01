@@ -1,25 +1,25 @@
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser')
+const express = require('express')
+const movementRoutes = require('./routes/movementRoutes')
 
-const express = require('express');
-const app = express();
-const port = 8081;
+const app = express()
+const port = 8081
 
 // Middleware
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 
 app.use((req, res, next) => {
-	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
-	res.setHeader(
-		'Access-Control-Allow-Methods',
-		'GET, POST, OPTIONS, PUT, PATCH, DELETE'
-	);
-	res.setHeader(
-		'Access-Control-Allow-Headers',
-		'X-Requested-With,content-type'
-	);
-	next();
-});
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080')
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+  )
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type')
+  next()
+})
+
+app.use('/api/move', movementRoutes)
 
 app.listen({ port }, () => {
-	console.log(`Course server running at http://localhost:${port}`);
-});
+  console.log(`Course server running at http://localhost:${port}`)
+})

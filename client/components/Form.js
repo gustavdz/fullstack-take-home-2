@@ -63,7 +63,11 @@ function FormRow(props) {
         />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <Button variant="contained" onClick={handlerClick}>
+        <Button
+          variant="contained"
+          onClick={handlerClick}
+          disabled={!(bounds && curLocation && moves)}
+        >
           Get New Position
         </Button>
       </Grid>

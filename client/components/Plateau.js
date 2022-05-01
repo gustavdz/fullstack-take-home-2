@@ -5,17 +5,17 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
 const Coord = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  backgroundColor: "#1A2027",
   ...theme.typography.body2,
   padding: theme.spacing(0),
   textAlign: "center",
-  color: theme.palette.text.secondary,
+  color: "#76ff03",
 }));
 
 function Position(props) {
-  const { x, y } = props;
-  const xArray = [...Array(x + 1).keys()].slice(1);
-  const yArray = [...Array(y + 1).keys()].slice(1);
+  const { x = 1, y = 1 } = props;
+  const xArray = [...Array(x).keys()];
+  const yArray = [...Array(y).keys()];
 
   return (
     <React.Fragment>
@@ -37,7 +37,7 @@ function Position(props) {
             >
               {yArray.length > 0 ? (
                 yArray.map((yPosition) => (
-                  <Grid item xs>
+                  <Grid item xs marginTop={2}>
                     <Coord>Coord {`${xPosition}${yPosition}`}</Coord>
                   </Grid>
                 ))
@@ -55,7 +55,7 @@ function Position(props) {
 export default function Plateau() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Position x={5} y={5} />
+      <Position />
     </Box>
   );
 }

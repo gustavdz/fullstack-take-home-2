@@ -21,22 +21,22 @@ function Position(props) {
     <React.Fragment>
       {xArray &&
         yArray &&
-        xArray.length > 0 &&
-        xArray
+        yArray.length > 0 &&
+        yArray
           .sort((a, b) => {
             return b - a;
           })
-          .map((xPosition) => (
+          .map((yPosition) => (
             <Grid
               container
               spacing={2}
               direction="row"
               justifyContent="center"
               alignItems="center"
-              key={`x-${xPosition}`}
+              key={`y-${yPosition}`}
             >
-              {yArray.length > 0 ? (
-                yArray.map((yPosition) => (
+              {xArray.length > 0 ? (
+                xArray.map((xPosition) => (
                   <Grid item xs marginTop={2}>
                     <Coord>Coord {`${xPosition}${yPosition}`}</Coord>
                   </Grid>
@@ -52,10 +52,11 @@ function Position(props) {
   );
 }
 
-export default function Plateau() {
+export default function Plateau(props) {
+  const { newBounds } = props;
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Position />
+      <Position x={newBounds?.x || 1} y={newBounds?.y || 1} />
     </Box>
   );
 }

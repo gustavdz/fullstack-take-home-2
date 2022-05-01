@@ -28,7 +28,7 @@ const runMove = (req, res) => {
     const newLocation = getNewLocation(movedRover);
 
     res.status(201).json({
-      data: { newLocation, rover: movedRover },
+      data: { newLocation, rover: movedRover, bounds: coords },
       status: "NEW_LOCATION_SET_SUCCESSFULLY",
       message: "the new location was set successfully",
     });

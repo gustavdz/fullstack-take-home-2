@@ -6,6 +6,8 @@ import Plateau from "./components/Plateau";
 
 function App() {
   const [newPosition, setNewPosition] = useState("");
+  const [newBounds, setNewBounds] = useState();
+
   return (
     <div className="App" style={{ textAlign: "center" }}>
       <img src={WallEImg} height="200" alt="wall-e robot" />
@@ -13,10 +15,10 @@ function App() {
         MARS ROVER
       </Typography>
       <Typography variant="h3" component="h3" style={{ marginBottom: 40 }}>
-        New Location:{newPosition}
+        New Position:{newPosition}
       </Typography>
-      <Form setNewPosition={setNewPosition} />
-      <Plateau />
+      <Form setNewPosition={setNewPosition} setNewBounds={setNewBounds} />
+      <Plateau newBounds={newBounds} />
     </div>
   );
 }

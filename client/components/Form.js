@@ -5,7 +5,7 @@ import { Button, TextField } from "@mui/material";
 import { getNewPosition } from "../services";
 
 function FormRow(props) {
-  const { setNewPosition } = props;
+  const { setNewPosition, setNewBounds } = props;
   const [bounds, setBounds] = useState("5 5");
   const [curLocation, setCurLocation] = useState("1 2 N");
   const [moves, setMoves] = useState("LMLMLMLMM");
@@ -22,6 +22,7 @@ function FormRow(props) {
       result.status === "NEW_LOCATION_SET_SUCCESSFULLY"
     ) {
       setNewPosition(result.data.newLocation);
+      setNewBounds(result.data.bounds);
     }
   }, [result]);
 
@@ -70,21 +71,26 @@ function FormRow(props) {
 }
 
 export default function Form(props) {
-  const { setNewPosition } = props;
+  const { setNewPosition, setNewBounds } = props;
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={1}>
-        <Grid
-          container
-          item
-          spacing={2}
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <FormRow setNewPosition={setNewPosition} />
+    <>
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={1}>
+          <Grid
+            container
+            item
+            spacing={2}
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <FormRow
+              setNewPosition={setNewPosition}
+              setNewBounds={setNewBounds}
+            />
+          </Grid>
         </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </>
   );
 }
